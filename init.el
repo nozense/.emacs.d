@@ -269,9 +269,6 @@
 
 
 
-
-
-;;(load-theme 'leuven t)
 (load-theme 'dracula t)
 (setq org-fontify-whole-heading-line t)
 (setq-default cursor-type 'box)
@@ -282,9 +279,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("603a831e0f2e466480cdc633ba37a0b1ae3c3e9a4e90183833bc4def3421a961" "34af44a659b79c9f92db13ac7776b875a8d7e1773448a8301f97c18437a822b6" "80b00f3bf7cdbdca6c80aadfbbb03145f3d0aacf6bf2a559301e61109954e30a" "b1a691bb67bd8bd85b76998caf2386c9a7b2ac98a116534071364ed6489b695d" "3e374bb5eb46eb59dbd92578cae54b16de138bc2e8a31a2451bf6fdb0f3fd81b" "19a2c0b92a6aa1580f1be2deb7b8a8e3a4857b6c6ccf522d00547878837267e7" "f366d4bc6d14dcac2963d45df51956b2409a15b770ec2f6d730e73ce0ca5c8a7" "5dcd1fb4603626df9eaec6583e159cf0de1d86facb8c2814e6d9ffab0cac8396" default))
+   '("5dcd1fb4603626df9eaec6583e159cf0de1d86facb8c2814e6d9ffab0cac8396" default))
  '(org-agenda-files
-   '("~/org/journals/todo.org" "/home/nozense/org/journals/journal.org" "/home/nozense/org/cheat-sheet.org" "/home/nozense/org/data/aeran.org" "/home/nozense/org/data/data.org" "/home/nozense/org/data/datta.org" "/home/nozense/org/data/linn.org"))
+   '("~/org/journals/*"))
  '(package-selected-packages
    '(dracula-theme no-littering php-mode avy company vertico htmlize which-key markdown-mode)))
 (custom-set-faces
