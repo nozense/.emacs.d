@@ -4,8 +4,7 @@
  (unless (file-exists-p myTmpDir)
     (make-directory myTmpDir t))
 
-(when (fboundp 'startup-redirect-eln-cache)
+;; Set eln-cache dir
+(when (boundp 'native-comp-eln-load-path)
   (startup-redirect-eln-cache
-   (convert-standard-filename
-    (expand-file-name  "var/eln-cache/" myTmpDir))))
-
+   (expand-file-name "/var/eln-cache" myTmpDir)))
