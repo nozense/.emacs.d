@@ -280,8 +280,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("5dcd1fb4603626df9eaec6583e159cf0de1d86facb8c2814e6d9ffab0cac8396" default))
- '(org-agenda-files
-   '("~/org/journals/*"))
+ '(org-agenda-files (quote ("~/org/journals/")))
  '(package-selected-packages
    '(dracula-theme no-littering php-mode avy company vertico htmlize which-key markdown-mode)))
 (custom-set-faces
