@@ -1,4 +1,0 @@
-;; Check the linux user and load the correct user-file
-(if (string= (user-login-name)
-	     "nozenlapz")
-    (load "nozenlapz" nil))
