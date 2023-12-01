@@ -77,6 +77,8 @@
   (setq org-log-done 'time)
   ;; Start org-mode in indented-mode
   (setq org-startup-indented t)
+  ;; Hide the leading stars!
+  (setq org-hide-leading-stars t)
   ;; Agenda files
   (setq org-agenda-files '("~/org/journals/"))
   ;; Org Keybinds - from the quick-start guide!

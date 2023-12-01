@@ -15,6 +15,15 @@
    (one_file_journal)
    (org-narrow-to-element)))
 
+;;;;;;;;;;;;;;;;;;
+;;              ;;
+;; DIV settings ;;
+;;              ;;
+;;;;;;;;;;;;;;;;;;
+
+;; Have a problem with dracula-theme in MATE-terminal, TMP-FIX
+
+(set-face-attribute 'org-hide nil :foreground "#666" :background "#444")
 
 ;;;;;;;;;;;;;;;;;;
 ;;              ;;
