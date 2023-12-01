@@ -7,3 +7,8 @@
 (if (string= (system-name)
 	     "molndesk")
     (load "molndesk") nil)
+
+(if (string= (system-name)
+	     "nozenseLinux")
+    (load "nozenseLinux") nil)
+
