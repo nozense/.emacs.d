@@ -1,4 +1,10 @@
-;; -*- mode: elisp -*-
+;;;;;;;;;;;;;;;;;;;;;
+;; nozense init.el ;;
+;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;
+;; Load-path's ;;
+;;;;;;;;;;;;;;;;;
 
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
@@ -8,25 +14,10 @@
  user-mail-address "nonsens@nozen.se")
 
 
-;;Make a directory for temp/local files - Mostly for no-littering!
- (setq myTmpDir (concat "~/" ".tmpEmacsFiles/"))
- (unless (file-exists-p myTmpDir)
-    (make-directory myTmpDir t))
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Some random settings ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; no littering!
-(setq no-littering-etc-directory
-      (expand-file-name "config/" myTmpDir))
-(setq no-littering-var-directory
-      (expand-file-name "data/" myTmpDir))
-(use-package no-littering)
-
-
-
-;; Add packages from MELPA stable - often more up to date than Emacs Elpa
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
 
 ;; Set utf-8 language coding
 (set-language-environment "UTF-8")
@@ -35,18 +26,114 @@
 (setq inhibit-startup-message t)
 ;; Enable transient mark mode
 (transient-mark-mode 1)
+;; Mouse support for xterm compatible terminals
+(xterm-mouse-mode t)
+;; This makes it so that emacs tries to indent to the correct lvl, if
+;; that is not possible (allready correct) it tries to auto-complete with TAB
+(setq tab-always-indent 'complete)
+(add-to-list 'completion-styles 'initials t)
+;; Keybind for visiual-line-mode!
+(global-set-key (kbd "C-c w") (lambda () (interactive)
+				(visual-line-mode 'toggle)))
+
+;; My own scripts - MOVE!?!
+(load "myElisp")
+(global-set-key
+ (kbd "C-c j")
+ (lambda () (interactive)
+   (one_file_journal)
+   (org-narrow-to-element)))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; We want packages ;;
+;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'package)
+;; Add packages from MELPA stable - often more up to date than Emacs Elpa
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;; Activate the packages!
+(package-initialize)
+;; Check if we have a list of packages
+(unless package-archive-contents
+  (package-refresh-contents))
+;; Cheese way to ensure all packages are installed, and install those thats not.
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+
+;;;;;;;;;;;;;;;;;
+;; use-package ;;
+;;;;;;;;;;;;;;;;;
+
+(use-package no-littering
+  :init
+  (setq no-littering-etc-directory
+	(expand-file-name "config/" myTmpDir))
+  (setq no-littering-var-directory
+	(expand-file-name "data/" myTmpDir)))
+
 
 ;; We NEED org-mode!
-(require 'org)
+(use-package org
+  :config
+  ;; Don't show Done in agenda
+  (setq org-agenda-skip-scheduled-if-done t)
+  (setq org-agenda-skip-deadline-if-done t)
+  ;; Log time of completion on TODOs -> DONE
+  (setq org-log-done 'time)
+  ;; Start org-mode in indented-mode
+  ;; Make a cusom agenda for non-schedueled todos
+  (setq org-agenda-custom-commands
+	'(("c" . "Custom Agendas")
+          ("cu" "Unscheduled TODO"
+           ((todo ""
+                  ((org-agenda-overriding-header "\nUnscheduled TODO")
+                   (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))
+           nil
+           nil)))
+  (setq org-startup-indented nil)
+  ;; Agenda files
+  (setq org-agenda-files '("~/org/journals/"))
+  ;; Org Keybinds - from the quick-start guide!
+  (global-set-key (kbd "C-c l") #'org-store-link)
+  (global-set-key (kbd "C-c a") #'org-agenda)
+  (global-set-key (kbd "C-c c") #'org-capture)
+  (setq org-fontify-whole-heading-line t))
 
-;; Don't show Done in agenda
-(setq org-agenda-skip-scheduled-if-done t)
-(setq org-agenda-skip-deadline-if-done t)
-;; Log time of completion on TODOs -> DONE
-(setq org-log-done 'time)
-;; Start org-mode in indented-mode
-(setq org-startup-indented nil)
+(use-package ido
+  :config
+  (ido-mode t))
+;; Autocomplete kommandon
+(use-package which-key
+  :config
+  (which-key-mode))
+;; Vertico autocomplete
+(use-package vertico
+  :config
+  (vertico-mode t))
+;; COMPANY-mode "complete anything"
+(use-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
 
+(use-package dracula-theme
+  :config
+  (load-theme 'dracula t)
+  (setq-default cursor-type 'box))
+
+(use-package avy
+  :config
+  ;; avy keybinds
+  (global-set-key (kbd "M-g e") 'avy-goto-word-0))
+
+(use-package htmlize)
+(use-package markdown-mode)
+(use-package php-mode)
+
+
+;; ORG-captures - MOVE?!
 
 
 (setq org-capture-templates
@@ -83,102 +170,6 @@
               ""* Tillagning:""
 
               " :jump-to-captured t)))
-
-
-
-;; Load the local copy of org-static-blog
-;; (load (expand-file-name "org-static-blog.el" "~/org/settings/"))
-
-
-;; Whitespace mode
-;; Stolen from the Discovering Emacs podcast
-;; https://github.com/VernonGrant Discovering Emacs / WhiteSpace mode (github)
-;; Works very well for me - and its good to have as a basis for your own changes!
-;; Define the whitespace style.
-(setq-default whitespace-style
-              '(face spaces empty tabs newline trailing space-mark tab-mark newline-mark))
-;; Make these characters represent whitespace.
-(setq-default whitespace-display-mappings
-              '(
-                ;; space -> · else .
-                (space-mark 32 [183] [46])
-                ;; new line -> ¬ else $
-                (newline-mark ?\n [172 ?\n] [36 ?\n])
-                ;; carriage return (Windows) -> ¶ else #
-                (newline-mark ?\r [182] [35])
-                ;; tabs -> » else >
-                (tab-mark ?\t [187 ?\t] [62 ?\t])))
-;; Don't enable whitespace for.
-(setq-default whitespace-global-modes
-              '(not shell-mode
-                    help-mode
-                    magit-mode
-                    magit-diff-mode
-                    ibuffer-mode
-                    dired-mode
-                    occur-mode))
-;;(global-whitespace-mode 1)
-;; Set whitespace actions.
-(setq-default whitespace-action
-              '(cleanup auto-cleanup))
-
-
-;;;;;;;;;;; Autocompletes!
-;; Autocomplete for filelists search and so on
-(require 'ido)
-;; (setq ido-save-directory-list-file (concat myTmpDir "ido-last"))
-(ido-mode t)
-;; Autocomplete kommandon
-(which-key-mode)
-;; Vertico autocomplete
-(vertico-mode t)
-;; COMPANY-mode "complete anything"
-(add-hook 'after-init-hook 'global-company-mode)
-
-
-;; Mouse support for xterm compatible terminals
-(xterm-mouse-mode t)
-
-;; This makes it so that emacs tries to indent to the correct lvl, if
-;; that is not possible (allready correct) it tries to auto-complete with TAB
-(setq tab-always-indent 'complete)
-(add-to-list 'completion-styles 'initials t)
-
-
-;; Org Keybinds - from the quick-start guide!
-(global-set-key (kbd "C-c l") #'org-store-link)
-(global-set-key (kbd "C-c a") #'org-agenda)
-(global-set-key (kbd "C-c c") #'org-capture)
-;; Whitespace mode
-;; Little function to actualy activate two modes with one key-bind!
-(global-set-key (kbd "C-c w") (lambda () (interactive)
-					;(whitespace-mode 'toggle)
-				(visual-line-mode 'toggle)))
-
-
-;; Make a cusom agenda for non-schedueled todos
-(setq org-agenda-custom-commands
-      '(("c" . "Custom Agendas")
-        ("cu" "Unscheduled TODO"
-         ((todo ""
-                ((org-agenda-overriding-header "\nUnscheduled TODO")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))
-         nil
-         nil)))
-
-
-;; avy keybinds
-(global-set-key (kbd "M-g e") 'avy-goto-word-0)
-
-
-(load "myElisp")
-(global-set-key
- (kbd "C-c j")
- (lambda () (interactive)
-   (one_file_journal)
-   (org-narrow-to-element)))
-
-
 
 
 
@@ -268,24 +259,6 @@
         ))
 
 
-
-(load-theme 'dracula t)
-(setq org-fontify-whole-heading-line t)
-(setq-default cursor-type 'box)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("5dcd1fb4603626df9eaec6583e159cf0de1d86facb8c2814e6d9ffab0cac8396" default))
- '(org-agenda-files (quote ("~/org/journals/")))
- '(package-selected-packages
-   '(dracula-theme no-littering php-mode avy company vertico htmlize which-key markdown-mode)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;;;;;;;;;;;;;
+;;;; END ;;;;
+;;;;;;;;;;;;;
