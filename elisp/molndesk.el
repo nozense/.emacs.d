@@ -158,7 +158,7 @@
          :with-email t
          :auto-sitemap t
          :publishing-function org-html-publish-to-html
-         :headline-levels 6
+         :headline-levels 4
          :htmlized-source t
          :auto-preamble t
          )
