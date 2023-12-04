@@ -3,23 +3,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;;;;;;;;;;;;;;;;;;;;
-;;                ;;
-;; My own scripts ;;
-;;                ;;
-;;;;;;;;;;;;;;;;;;;;
-
-(load "myElisp")
-(global-set-key
- (kbd "C-c j")
- (lambda () (interactive)
-   (myOneFileJournal)
-   (org-narrow-to-element)))
-(global-set-key
- (kbd "C-c s")
- (lambda () (interactive)
-   (myCreateShortFictionFile)))
-
 
 ;;;;;;;;;;;;;;;;;;
 ;;              ;;
@@ -36,8 +19,6 @@
          "* %U %?\n %i")
         ("m" "TODO imorgon" entry (file+datetree "~/org/journals/todo.org")
          "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))\n %i")
-        ("w" "Link to webpage" entry (file+headline "~/org/nozen.se/index.org" "Random Links")
-         "* [[?][%?]]\n")
         ("r" "Recipe" entry
          (file+headline "~/org/data/recept.org" "Nya Recept")
          "* %?
@@ -59,17 +40,6 @@
               ""* Tillagning:""
 
               " :jump-to-captured t)))
-
-;; Make a cusom agenda for non-schedueled todos
-(setq org-agenda-custom-commands
-      '(("c" . "Custom Agendas")
-        ("cu" "Unscheduled TODO"
-         ((todo ""
-                ((org-agenda-overriding-header "\nUnscheduled TODO")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))
-         nil
-         nil)))
-
 
 ;;;;;;;;;
 ;;     ;;

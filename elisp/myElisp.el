@@ -31,7 +31,10 @@
   (setq the_title (concat "#+TITLE: " title"\n"))
   (insert created)
   (insert the_title)
-  (insert "* ")
+  (insert "* Outline\n")
+  (insert " - \n")
+  (insert "* Text\n")
+  (goto-char (org-find-exact-headline-in-buffer "Outline"))
   )
 
 
