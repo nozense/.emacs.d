@@ -71,7 +71,11 @@
   (setq no-littering-etc-directory
 	(expand-file-name "config/" myTmpDir))
   (setq no-littering-var-directory
-	(expand-file-name "data/" myTmpDir)))
+	(expand-file-name "data/" myTmpDir))
+  (setq backup-directory-alist
+	`((".*" . ,myTmpDir)))
+  (setq auto-save-file-name-transforms
+	`((".*" ,myTmpDir t))))
 
 ;; We NEED org-mode!
 (use-package org
@@ -118,6 +122,8 @@
   :config
   ;; avy keybinds
   (global-set-key (kbd "M-g e") 'avy-goto-word-0))
+
+(use-package wc-mode)
 
 (use-package htmlize)
 (use-package markdown-mode)
