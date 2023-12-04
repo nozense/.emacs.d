@@ -1,5 +1,5 @@
 
-(defun one_file_journal ()
+(defun myOneFileJournal ()
   (setq target_file "~/org/journals/journal.org")
   (setq year (format-time-string "%Y"))
   (setq month (format-time-string "%B"))
@@ -20,9 +20,18 @@
 
 
 (defun myCreateShortFictionFile ()
-  (let ((name (s-lower-camel-case (read-string "Namn: "))))
-    (expand-file-name (format "%s-%s.org"
-                              name
-			      (format-time-string "%Y-%m-%d"))
-		      "~/org/skrivande/kort/")))
+  (setq title (read-string "Namn: "))
+  (setq name  (s-lower-camel-case title)) 
+  (setq target_file (expand-file-name (format "%s-%s.org"
+					      (format-time-string "%Y")
+					      name)
+				      "~/org/skrivande/kort/"))
+  (find-file target_file)
+  (setq created (concat "#+DATE: <" (format-time-string "%Y-%m-%d") ">\n"))
+  (setq the_title (concat "#+TITLE: " title"\n"))
+  (insert created)
+  (insert the_title)
+  (insert "* ")
+  )
+
 
