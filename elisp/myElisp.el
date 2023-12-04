@@ -19,9 +19,10 @@
   (goto-char (org-find-exact-headline-in-buffer month)))
 
 
-(defun myCreateBlogFileWithDate ()
-  (let ((name (read-string "Name: ")))
+(defun myCreateShortFictionFile ()
+  (let ((name (s-lower-camel-case (read-string "Namn: "))))
     (expand-file-name (format "%s-%s.org"
-                              (format-time-string "%Y-%m-%d")
-                              name) "~/org/blog/posts/")))
+                              name
+			      (format-time-string "%Y-%m-%d"))
+		      "~/org/skrivande/kort/")))
 

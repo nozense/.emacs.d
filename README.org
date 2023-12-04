@@ -7,3 +7,17 @@ Here is amongst other things my machine-specific settings, including the publish
 * use-package
 This init.el uses use-package with ~ensure~!
 First run will download all the packages i use!
+
+** Packages i use
+
+*** s
+*** wc-mode
+*** which-key
+*** vertico
+*** php-mode
+*** no-littering
+*** markdown-mode
+*** htmlize
+*** dracula-theme
+*** company
+*** avy

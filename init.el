@@ -124,7 +124,7 @@
   (global-set-key (kbd "M-g e") 'avy-goto-word-0))
 
 (use-package wc-mode)
-
+(use-package s)
 (use-package htmlize)
 (use-package markdown-mode)
 (use-package php-mode)

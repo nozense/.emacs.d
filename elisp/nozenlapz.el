@@ -34,7 +34,7 @@
          "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))\n %i")
         ("w" "Link to webpage" entry (file+headline "~/org/nozen.se/index.org" "Random Links")
          "* [[?][%?]]\n")
-        ("b" "Blogg" entry (file myCreateBlogFileWithDate)
+	("s" "Short fiction" entry (file myCreateShortFictionFile)
          "* %?\nSkapat: %U\n\n %i")
         ("r" "Recipe" entry
          (file+headline "~/org/data/recept.org" "Nya Recept")
