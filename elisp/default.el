@@ -39,4 +39,6 @@
                 ((org-agenda-overriding-header "\nUnscheduled TODO")
                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp)))))
          nil
-         nil)))
+         nil)
+	("cs" "skriver todo"  tags-todo "CATEGORY=\"writings\"")
+	))

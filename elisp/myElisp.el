@@ -20,7 +20,7 @@
 
 
 (defun myCreateShortFictionFile ()
-  (setq title (read-string "Namn: "))
+  (setq title (read-string "Name: "))
   (setq name  (s-lower-camel-case title)) 
   (setq target_file (expand-file-name (format "%s-%s.org"
 					      (format-time-string "%Y")
@@ -29,11 +29,15 @@
   (find-file target_file)
   (setq created (concat "#+DATE: <" (format-time-string "%Y-%m-%d") ">\n"))
   (setq the_title (concat "#+TITLE: " title"\n"))
+  (setq headern (concat  "\n* " title "\n"))
+  (insert "#+TODO: TODO(t) PAUSE(p) | DONE(d) CANCELED(c)\n")
+  (insert "#+CATEGORY: writings\n")
+  (insert "#+TAGS: flashFiction\n")
   (insert created)
   (insert the_title)
-  (insert "* Outline\n")
+  (insert "\n* Outline\n")
   (insert " - \n")
-  (insert "* Text\n")
+  (insert headern)
   (goto-char (org-find-exact-headline-in-buffer "Outline"))
   )
 

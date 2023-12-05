@@ -40,6 +40,8 @@
 ;; that is not possible (allready correct) it tries to auto-complete with TAB
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
+;; Nice symbol for visiual-line-mode
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 ;; Keybind for visiual-line-mode!
 (global-set-key (kbd "C-c w") (lambda () (interactive)
 				(visual-line-mode 'toggle)))
