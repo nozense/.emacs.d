@@ -2,6 +2,13 @@
 ;; Machine specific settings for station - nozenseLinux ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Dracula pro theme ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+ (add-to-list 'custom-theme-load-path "~/org/draculaPRO/themes/emacs/")
+   (load-theme 'dracula-pro-buffy t)
+
 
 ;;;;;;;;;;;;;;;;;;
 ;;              ;;
