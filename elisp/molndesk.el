@@ -2,6 +2,15 @@
 ;; Machine specific settings for VPS - molndesk ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; Dracula pro theme ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+ (add-to-list 'custom-theme-load-path "~/org/draculaPRO/themes/emacs/")
+   (load-theme 'dracula-pro-pro t)
+
+
 ;;;;;;;;;;;;;;;;;;
 ;;              ;;
 ;; DIV settings ;;

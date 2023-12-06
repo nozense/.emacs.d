@@ -7,7 +7,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;
 
  (add-to-list 'custom-theme-load-path "~/org/draculaPRO/themes/emacs/")
-   (load-theme 'dracula-pro-morbius t)
+   (load-theme 'dracula-pro-blade t)
 
 
 ;;;;;;;;;;;;;;;;;;
