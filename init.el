@@ -46,7 +46,8 @@
 (global-set-key (kbd "C-c w") (lambda () (interactive)
 				(visual-line-mode 'toggle)))
 
-
+(global-set-key (kbd "C-c b") (lambda () (interactive) (speedbar)))
+		
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; We want packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;
