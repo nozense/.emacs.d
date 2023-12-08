@@ -56,16 +56,21 @@
 (tool-bar-mode -1)
 ;; no need for menus
 (menu-bar-mode -1)
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; We want packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
+;; MELPA packages - using unstable
 (require 'package)
-;; Add packages from MELPA stable - often more up to date than Emacs Elpa
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 ;; Activate the packages!
 (package-initialize)
+
 ;; Check if we have a list of packages
 (unless package-archive-contents
   (package-refresh-contents))
@@ -139,6 +144,9 @@
 (use-package htmlize)
 (use-package markdown-mode)
 (use-package php-mode)
+(use-package nov
+  :config
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
 ;;;;;;;;;;;;;
 ;;;; END ;;;;
