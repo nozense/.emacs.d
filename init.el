@@ -56,6 +56,8 @@
 (tool-bar-mode -1)
 ;; no need for menus
 (menu-bar-mode -1)
+;; save place mode
+(save-place-mode 1) 
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; We want packages ;;
