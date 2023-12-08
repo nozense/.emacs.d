@@ -4,6 +4,19 @@ This is just my emacs conf, included is my game highscore!
 ** elisp/
 Here is amongst other things my machine-specific settings, including the publish settings for my homepage and my org-captures.
 
+* Keybindings
+
+| Keybind | Command          |
+|---------+------------------|
+| C-c w   | visual-line-mode |
+| C-c b   | speedbar         |
+| C-c t   | tab-new          |
+| C-c n   | tab-next         |
+| M-g e   | avy-goto-word-0  |
+| C-c l   | org-store-link   |
+| C-c a   | org-agenda       |
+| C-c c   | org-capture      |
+
 * use-package
 This init.el uses use-package with ~ensure~!
 First run will download all the packages i use!
@@ -19,5 +32,6 @@ First run will download all the packages i use!
 *** markdown-mode
 *** htmlize
 *** dracula-theme
+I use dracula PRO themes but those cost a loat of money, the open-source one that activates by default in this init.el is really good!
 *** company
 *** avy
