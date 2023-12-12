@@ -56,8 +56,12 @@
 (tool-bar-mode -1)
 ;; no need for menus
 (menu-bar-mode -1)
+;; no scrollbar - plz!
+(scroll-bar-mode -1)
 ;; save place mode
-(save-place-mode 1) 
+(save-place-mode 1)
+;; Line numbers
+(global-display-line-numbers-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; We want packages ;;

@@ -26,6 +26,17 @@
         ("m" "TODO imorgon" entry (file+datetree "~/org/journals/todo.org")
          "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))\n %i")))
 
+;; music
+
+
+(use-package emms
+  :config
+  (emms-all)
+  (setq emms-player-list '(emms-player-vlc)
+	emms-info-functions '(emms-info-native)))
+
+
+
 ;;;;;;;;;
 ;;     ;;
 ;; END ;;
