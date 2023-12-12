@@ -47,11 +47,12 @@
 				(visual-line-mode 'toggle)))
 ;; Keybind for speedbar
 (global-set-key (kbd "C-c b") (lambda () (interactive) (speedbar)))
-;; Tab bar mode!
-(tab-bar-mode t)
-(global-set-key (kbd "C-c n") (lambda () (interactive) (tab-next)))
-(global-set-key (kbd "C-c t") (lambda () (interactive) (tab-new)))
 
+;; Tab bar mode!
+(add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
+(setq tab-bar-close-button-show nil
+      tab-bar-new-button-show nil)
+(tab-bar-mode t)
 ;; no need for tool-bars
 (tool-bar-mode -1)
 ;; no need for menus
