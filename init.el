@@ -155,6 +155,13 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
 
+
+(use-package god-mode
+  :config
+  (setq god-exempt-major-modes nil)
+  (setq god-exempt-predicates nil)
+  (global-set-key (kbd "<escape>") #'god-local-mode))
+(god-mode)
 ;;;;;;;;;;;;;
 ;;;; END ;;;;
 ;;;;;;;;;;;;;

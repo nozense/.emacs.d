@@ -10,6 +10,7 @@
    (load-theme 'dracula-pro-blade t)
 
 
+
 ;;;;;;;;;;;;;;;;;;
 ;;              ;;
 ;; ORG-captures ;;
