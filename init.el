@@ -169,7 +169,9 @@
   (global-set-key (kbd "<escape>") #'god-local-mode)
   (custom-set-faces
    '(god-mode-lighter ((t (:inherit error)))))
-  )
+  (defun my-god-mode-update-cursor-type ()
+    (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
+  (add-hook 'post-command-hook #'my-god-mode-update-cursor-type))
 
 (god-mode)
 
