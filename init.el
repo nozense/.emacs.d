@@ -62,6 +62,8 @@
 (save-place-mode 1)
 ;; Line numbers
 (global-display-line-numbers-mode)
+;; Highlight current line
+(global-hl-line-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; We want packages ;;
@@ -145,7 +147,10 @@
 (use-package avy
   :config
   ;; avy keybinds
-  (global-set-key (kbd "M-g e") 'avy-goto-word-0))
+  (global-set-key (kbd "M-g e") 'avy-goto-word-0)
+  ;; keybind below is to make it faster in godmode 
+  (global-set-key (kbd "M-g C-e") 'avy-goto-word-0)
+  )
 
 (use-package wc-mode)
 (use-package s)
