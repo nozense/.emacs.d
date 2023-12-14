@@ -47,7 +47,6 @@
 				(visual-line-mode 'toggle)))
 ;; Keybind for speedbar
 (global-set-key (kbd "C-c b") (lambda () (interactive) (speedbar)))
-
 ;; Tab bar mode!
 (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar)
 (setq tab-bar-close-button-show nil
@@ -110,6 +109,8 @@
   (setq org-log-done 'time)
   ;; Start org-mode in indented-mode
   (setq org-startup-indented t)
+  ;; agenda in new tab
+  (setq org-agenda-window-setup 'other-tab)
   ;; Hide the leading stars!
   (setq org-hide-leading-stars t)
   ;; Agenda files
@@ -160,8 +161,14 @@
   :config
   (setq god-exempt-major-modes nil)
   (setq god-exempt-predicates nil)
-  (global-set-key (kbd "<escape>") #'god-local-mode))
+  (global-set-key (kbd "<escape>") #'god-local-mode)
+  (custom-set-faces
+   '(god-mode-lighter ((t (:inherit error)))))
+  )
+
 (god-mode)
+
+
 ;;;;;;;;;;;;;
 ;;;; END ;;;;
 ;;;;;;;;;;;;;
