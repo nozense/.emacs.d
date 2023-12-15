@@ -9,6 +9,23 @@
  (add-to-list 'custom-theme-load-path "~/org/draculaPRO/themes/emacs/")
    (load-theme 'dracula-pro-blade t)
 
+;;;;;;;;;;;;;
+;;         ;;
+;; Todoist ;;
+;;         ;;
+;;;;;;;;;;;;;
+
+;; (use-package todoist)
+
+;;;;;;;;;;;;;;;;;;;
+;;               ;;
+;; SLIME - cLisp ;;
+;;               ;;
+;;;;;;;;;;;;;;;;;;;
+
+(load (expand-file-name "~/.quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
+(setq inferior-lisp-program "sbcl")
 
 
 ;;;;;;;;;;;;;;;;;;

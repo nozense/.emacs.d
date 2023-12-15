@@ -2,15 +2,15 @@
 
 (if (string= (system-name)
 	     "nozenlapz-UX430UAR")
-    (load "nozenlapz") nil)
+    (load "nozenlapz") 
 
-(if (string= (system-name)
-	     "molndesk")
-    (load "molndesk") nil)
+  (if (string= (system-name)
+	       "molndesk")
+      (load "molndesk") 
 
-(if (string= (system-name)
-	     "nozenseLinux")
-    (load "nozenseLinux") nil)
+    (if (string= (system-name)
+		 "nozenseLinux")
+	(load "nozenseLinux") nil)))
 
 
 
