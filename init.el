@@ -123,6 +123,11 @@
   (global-set-key (kbd "C-c c") #'org-capture)
   (setq org-fontify-whole-heading-line t))
 
+(use-package org-modern
+  :config
+  (add-hook 'org-mode-hook #'org-modern-mode)
+  (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))
+
 (use-package ido
   :config
   (ido-mode t))
