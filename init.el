@@ -130,6 +130,7 @@
 
 (use-package ido
   :config
+  (setq ido-separator "\n")
   (ido-mode t))
 ;; Autocomplete kommandon
 (use-package which-key
