@@ -111,8 +111,9 @@
   (setq org-log-done 'time)
   ;; Start org-mode in indented-mode
   (setq org-startup-indented t)
-  ;; agenda in new tab
-  (setq org-agenda-window-setup 'other-tab)
+  ;; agenda setup
+  (setq org-agenda-window-setup 'reorganize-frame)
+  (setq org-agenda-restore-windows-after-quit t)
   ;; Hide the leading stars!
   (setq org-hide-leading-stars t)
   ;; Agenda files
@@ -156,6 +157,10 @@
   (global-set-key (kbd "M-g e") 'avy-goto-word-0)
   ;; keybind below is to make it faster in godmode 
   (global-set-key (kbd "M-g C-e") 'avy-goto-word-0)
+  (global-set-key (kbd "M-g w") 'avy-goto-word-1)
+  (global-set-key (kbd "M-g f") 'avy-goto-line)
+  (global-set-key (kbd "C-'") 'avy-goto-char-2)
+  (global-set-key (kbd "C-:") 'avy-goto-char)
   )
 
 (use-package wc-mode)
@@ -187,8 +192,6 @@
   (defun my-god-mode-update-cursor-type ()
     (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
   (add-hook 'post-command-hook #'my-god-mode-update-cursor-type))
-
-(god-mode)
 
 
 ;;;;;;;;;;;;;
