@@ -16,22 +16,32 @@ Here is amongst other things my machine-specific settings, including the publish
 | C-c l   | org-store-link   |
 | C-c a   | org-agenda       |
 | C-c c   | org-capture      |
+| M-g e   | avy-goto-word-0  |
+| M-g C-e | avy-goto-word-0  |
+|         |                  |
 
 * use-package
 This init.el uses use-package with ~ensure~!
 First run will download all the packages i use!
 
 ** Packages i use
+| Package       | Use                       |
+|---------------+---------------------------|
+| s             | String manipulation       |
+| wc-mode       | Word count                |
+| [[https://github.com/justbur/emacs-which-key][which-key]]     | Display keybindings       |
+| [[https://github.com/minad/vertico][vertico]]       | TAB-completion            |
+| php-mode      | PHP file supporten        |
+| [[https://github.com/emacscollective/no-littering][no-littering]]  | Cleaner .emacs.d          |
+| markdown-mode | markdown file support     |
+| [[https://github.com/hniksic/emacs-htmlize][htmlize]]       | Covert buffer to html     |
+| dracula-theme | Nice theme                |
+| [[https://company-mode.github.io/][company]]       | Text-completion           |
+| [[https://github.com/abo-abo/avy][avy]]           | text-jumping              |
+| [[https://depp.brause.cc/nov.el/][nov]]           | read epub                 |
+| [[https://github.com/emacsorphanage/god-mode][god-mode]]      | Modal editing             |
+| ido           | Interactive switching     |
+| org-mode      | EVERYTHING!               |
+| org-modern    | Makes org-files look good |
+|               |                           |
 
-*** s
-*** wc-mode
-*** which-key
-*** vertico
-*** php-mode
-*** no-littering
-*** markdown-mode
-*** htmlize
-*** dracula-theme
-I use dracula PRO themes but those cost a loat of money, the open-source one that activates by default in this init.el is really good!
-*** company
-*** avy

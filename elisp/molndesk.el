@@ -62,58 +62,6 @@
 
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                              ;;
-;; SETTINGS for org-static-blog ;;
-;;                              ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(load "org-static-blog")
-(setq org-static-blog-publish-title "nozen.se/blog")
-(setq org-static-blog-langcode "sv")
-(setq org-static-blog-publish-url "https://nozen.se/blog/")
-(setq org-static-blog-publish-directory "/var/www/nozen.se/blog/")
-(setq org-static-blog-posts-directory "~/org/blog/posts/")
-(setq org-static-blog-drafts-directory "~/org/blog/drafts/")
-(setq org-static-blog-enable-tags t)
-(setq org-export-with-toc nil)
-(setq org-export-with-section-numbers nil)
-
-;; This header is inserted into the <head> section of every page:
-;;   (you will need to create the style sheet at
-;;    ~/projects/blog/static/style.css
-;;    and the favicon at
-;;    ~/projects/blog/static/favicon.ico)
-(setq org-static-blog-page-header
-      "<meta name=\"author\" content=\"nozense\">
-      <meta name=\"referrer\" content=\"no-referrer\">
-      <meta name=\"viewport\" content=\"initial-scale=1,width=device-width,minimum-scale=1\">
-      <link href= \"static/style.css\" rel=\"stylesheet\" type=\"text/css\" />
-      <link rel=\"icon\" href=\"static/favicon.ico\">")
-
-;; This preamble is inserted at the beginning of the <body> of every page:
-;;   This particular HTML creates a <div> with a simple linked headline
-(setq org-static-blog-page-preamble
-      "<div class=\"header\"> </div>")
-
-;; This postamble is inserted at the end of the <body> of every page:
-;;   This particular HTML creates a <div> with a link to the archive page
-;;   and a licensing stub.
-(setq org-static-blog-page-postamble
-      "<a href=\"https://nozen.se\">nozen.se</a><br />Author: nozense <br />Email: nonsens@nozen.se <br />
-  ")
-
-;; This HTML code is inserted into the index page between the preamble and
-;;   the blog posts
-(setq org-static-blog-index-front-matter
-      "<h1>nozen.se/blog </h1>\n")
-
-;; KEYBINDINGS!
-(add-to-list 'auto-mode-alist (cons (concat org-static-blog-posts-directory ".*\\.org\\'") 'org-static-blog-mode))
-;;    C-c C-f / C-c C-b to open next/previous post.
-;;    C-c C-p to open the matching published HTML file of a post.
-;;    C-c C-n to create a new blog post.
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                               ;; 
