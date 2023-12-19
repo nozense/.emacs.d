@@ -4,6 +4,18 @@ This is just my emacs conf, included is my game highscore!
 ** elisp/
 Here is amongst other things my machine-specific settings, including the publish settings for my homepage and my org-captures.
 
+* Worth while settings outside emacs
+
+setxkbmap -option ctrl:nocaps
+
+OR
+
+setxkbmap -option ctrl:swapcaps
+
+TO DISABLE: 
+
+setxkbmap -option
+
 * Keybindings
 
 | Keybind | Command          |

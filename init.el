@@ -23,6 +23,9 @@
 (load custom-file)
 
 
+;; The default is 800 kilobytes.  Measured in bytes. <- Systemcrafters idea! (=
+(setq gc-cons-threshold (* 50 1000 1000))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Some random settings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -69,21 +72,20 @@
 ;; We want packages ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
-;; MELPA packages - using unstable
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 
-;; Activate the packages!
 (package-initialize)
-
-;; Check if we have a list of packages
 (unless package-archive-contents
   (package-refresh-contents))
-;; Cheese way to ensure all packages are installed, and install those thats not.
-(require 'use-package-ensure)
+
+  ;; Initialize use-package on non-Linux platforms
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
 (setq use-package-always-ensure t)
 
 ;;;;;;;;;;;;;;;;;
@@ -96,10 +98,23 @@
 	(expand-file-name "config/" myTmpDir))
   (setq no-littering-var-directory
 	(expand-file-name "data/" myTmpDir))
+  (setq auto-save-file-name-transforms
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
   (setq backup-directory-alist
 	`((".*" . ,myTmpDir)))
   (setq auto-save-file-name-transforms
 	`((".*" ,myTmpDir t))))
+
+;; Keep packages up-to-date!
+(use-package auto-package-update
+  :custom
+  (auto-package-update-interval 7)
+  (auto-package-update-prompt-before-update t)
+  (auto-package-update-hide-results t)
+  :config
+  (auto-package-update-maybe)
+  (auto-package-update-at-time "09:00"))
+
 
 ;; We NEED org-mode!
 (use-package org
@@ -135,8 +150,14 @@
   (ido-mode t))
 ;; Autocomplete kommandon
 (use-package which-key
+  :defer 0
+  :diminish which-key-mode
   :config
-  (which-key-mode))
+  (which-key-mode)
+  (setq which-key-idle-delay 1))
+;; Color nested stuff
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 ;; Vertico autocomplete
 (use-package vertico
   :config
@@ -152,32 +173,30 @@
   (setq-default cursor-type 'box))
 
 (use-package avy
-  :config
-  ;; avy keybinds
-  (global-set-key (kbd "M-g e") 'avy-goto-word-0)
-  ;; keybind below is to make it faster in godmode 
-  (global-set-key (kbd "M-g C-e") 'avy-goto-word-0)
-  (global-set-key (kbd "M-g w") 'avy-goto-word-1)
-  (global-set-key (kbd "M-g f") 'avy-goto-line)
-  (global-set-key (kbd "C-'") 'avy-goto-char-2)
-  (global-set-key (kbd "C-:") 'avy-goto-char)
-  )
+  :bind (("M-g e" . avy-goto-word-0)
+  ("M-g C-e" . avy-goto-word-0)
+  ("M-g w" . avy-goto-word-1)
+  ("M-g f" . avy-goto-line)
+  ("C-'" . avy-goto-char-2)
+  ("C-:" . avy-goto-char)))
 
 (use-package wc-mode)
 (use-package s)
 (use-package htmlize)
-(use-package markdown-mode)
-(use-package php-mode)
+(use-package markdown-mode
+  :mode "\\.md\\'")
+(use-package php-mode
+  :mode "\\.php\\'")
 (use-package nov
   :config
-  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
-
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+  :mode "\\.epub\\'")
 
 (use-package god-mode
+  :bind (("<escape>" . god-local-mode))
   :config
   (setq god-exempt-major-modes nil)
   (setq god-exempt-predicates nil)
-  (global-set-key (kbd "<escape>") #'god-local-mode)
   (global-set-key (kbd "C-c g") #'god-local-mode) ;; For mobile use - esc dosent work!
   (global-set-key (kbd "C-x C-1") #'delete-other-windows)
   (global-set-key (kbd "C-x C-2") #'split-window-below)
@@ -193,6 +212,25 @@
     (setq cursor-type (if (or god-local-mode buffer-read-only) 'box 'bar)))
   (add-hook 'post-command-hook #'my-god-mode-update-cursor-type))
 
+;;;;;;;;;;;
+;; OTHER ;;
+;;;;;;;;;;;
+
+
+;; stolen https://systemcrafters.net/emacs-from-scratch/cut-start-up-time-in-half/
+
+(defun efs/display-startup-time ()
+  (message "Emacs loaded in %s with %d garbage collections."
+           (format "%.2f seconds"
+                   (float-time
+                   (time-subtract after-init-time before-init-time)))
+           gcs-done))
+
+(add-hook 'emacs-startup-hook #'efs/display-startup-time)
+
+
+;; Make gc pauses faster by decreasing the threshold. <- Systemcrafters idea (=
+(setq gc-cons-threshold (* 2 1000 1000))
 
 ;;;;;;;;;;;;;
 ;;;; END ;;;;
