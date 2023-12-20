@@ -155,19 +155,29 @@
   :hook (prog-mode . rainbow-delimiters-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                         ;;
 ;; Auto-complete and such! ;;
+;;                         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "init-VMCEO")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Vertico, Marginalia, Consult, Embark, Orderless ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Vertico - Vertical completion in mini-buffer
+;; Marginalia - More information in the margin of minibuffer
+;; Consult - Search and navigation from list of candidates
+;; Oderless - Makes the list-candidates searchable in more ways
+;; Embark - Context aware "command to run"
+;; https://cestlaz.github.io/post/using-emacs-80-vertico/
 
-;; COMPANY-mode "complete anything"
+(load "init-VMCEO") ;; <-- elisp/init-VMCEO.el
+
+;; COMPANY-mode in-buffer completion!
 (use-package company
   :config
   (add-hook 'after-init-hook 'global-company-mode))
 
-;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package dracula-theme
   :config
