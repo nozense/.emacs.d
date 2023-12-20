@@ -16,6 +16,10 @@ TO DISABLE:
 
 setxkbmap -option
 
+* Vertico, Marginalia, Consult, Embark, Orderless
+
+Trying out these packages! Said to be the best alternative!
+
 * Keybindings
 
 | Keybind | Command          |
@@ -42,7 +46,6 @@ First run will download all the packages i use!
 | s             | String manipulation       |
 | wc-mode       | Word count                |
 | [[https://github.com/justbur/emacs-which-key][which-key]]     | Display keybindings       |
-| [[https://github.com/minad/vertico][vertico]]       | TAB-completion            |
 | php-mode      | PHP file supporten        |
 | [[https://github.com/emacscollective/no-littering][no-littering]]  | Cleaner .emacs.d          |
 | markdown-mode | markdown file support     |
@@ -52,7 +55,6 @@ First run will download all the packages i use!
 | [[https://github.com/abo-abo/avy][avy]]           | text-jumping              |
 | [[https://depp.brause.cc/nov.el/][nov]]           | read epub                 |
 | [[https://github.com/emacsorphanage/god-mode][god-mode]]      | Modal editing             |
-| ido           | Interactive switching     |
 | org-mode      | EVERYTHING!               |
 | org-modern    | Makes org-files look good |
 |               |                           |

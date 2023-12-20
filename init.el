@@ -143,11 +143,6 @@
   :config
   (add-hook 'org-mode-hook #'org-modern-mode)
   (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))
-
-(use-package ido
-  :config
-  (setq ido-separator "\n")
-  (ido-mode t))
 ;; Autocomplete kommandon
 (use-package which-key
   :defer 0
@@ -158,14 +153,21 @@
 ;; Color nested stuff
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-;; Vertico autocomplete
-(use-package vertico
-  :config
-  (vertico-mode t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Auto-complete and such! ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load "init-VMCEO")
+
 ;; COMPANY-mode "complete anything"
 (use-package company
   :config
   (add-hook 'after-init-hook 'global-company-mode))
+
+;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;
+
 
 (use-package dracula-theme
   :config
