@@ -1,5 +1,5 @@
+#+STARTUP: content
 #+TITLE: Emacs.org - init.el
-#+STARTUP: content indent
 
 * User settings and early stuff
 
@@ -91,15 +91,15 @@
   (use-package no-littering
     :init
     (setq no-littering-etc-directory
-          (expand-file-name "config/" myTmpDir))
+          (expand-file-name "litter/config/" user-emacs-directory))
     (setq no-littering-var-directory
-          (expand-file-name "data/" myTmpDir))
+          (expand-file-name "litter/data/" user-emacs-directory))
     (setq auto-save-file-name-transforms
           `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
     (setq backup-directory-alist
-          `((".*" . ,myTmpDir)))
+          `((".*" . ,user-emacs-directory)))
     (setq auto-save-file-name-transforms
-          `((".*" ,myTmpDir t))))
+          `((".*" ,user-emacs-directory t))))
 
 #+end_src
 
