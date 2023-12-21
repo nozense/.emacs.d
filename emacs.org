@@ -4,51 +4,20 @@
 * User settings and early stuff
 
 #+begin_src emacs-lisp
-  
-  (setq
-     user-full-name "NoZenSe"
-     user-mail-address "nonsens@nozen.se")
 
+  (setq
+   user-full-name "NoZenSe"
+   user-mail-address "nonsens@nozen.se")
+  (set-language-environment "UTF-8")     ;; Set utf-8 language coding
   ;; Move the set-custom to a separate file
   (setq custom-file  (expand-file-name "custom.el"(expand-file-name "litter/"  user-emacs-directory)))
   (unless (file-exists-p custom-file)
     (progn (make-directory (expand-file-name "litter/"  user-emacs-directory) t)(write-region "" nil custom-file)))
-    (load custom-file)
+  (load custom-file)
 
   ;; The default is 800 kilobytes.  Measured in bytes. <- Systemcrafters idea! (=
   (setq gc-cons-threshold (* 50 1000 1000))
 
-#+end_src
-
-* One-liner quick settings
-
-#+begin_src emacs-lisp
-
-(setq inhibit-splash-screen t)         ;; Disable the splash screen
-(setq inhibit-startup-message t)       ;; Disable startupmessage
-(set-language-environment "UTF-8")     ;; Set utf-8 language coding
-(tool-bar-mode -1)                     ;; no need for tool-bars
-(menu-bar-mode -1)                     ;; no need for menus
-(scroll-bar-mode -1)                   ;; no scrollbar - plz!
-(save-place-mode 1)                    ;; save place mode
-(global-display-line-numbers-mode)     ;; Line numbers
-(global-hl-line-mode)                  ;; Highlight current line
-(transient-mark-mode 1)                ;; Enable transient mark mode
-(xterm-mouse-mode t)                   ;; Mouse support for xterm compatible terminals
-
-;; Keybinds
-
-(setq visual-line-fringe-indicators    ;; Nice symbol for visiual-line-mode
-      '(nil right-curly-arrow))
-(global-set-key (kbd "C-c w")          ;; Keybind for visiual-line-mode!
-		(lambda ()
-		  (interactive)
-		  (visual-line-mode 'toggle)))
-(global-set-key (kbd "C-c b")          ;; Keybind for speedbar
-		(lambda ()
-		  (interactive)
-		  (speedbar)))
-  
 #+end_src
 
 * Use-package init
@@ -90,6 +59,36 @@
           `((".*" . ,user-emacs-directory)))
     (setq auto-save-file-name-transforms
           `((".*" ,user-emacs-directory t))))
+
+#+end_src
+
+* One-liner quick settings
+
+#+begin_src emacs-lisp
+
+  (setq inhibit-splash-screen t)         ;; Disable the splash screen
+  (setq inhibit-startup-message t)       ;; Disable startupmessage
+  (tool-bar-mode -1)                     ;; no need for tool-bars
+  (menu-bar-mode -1)                     ;; no need for menus
+  (scroll-bar-mode -1)                   ;; no scrollbar - plz!
+  (save-place-mode 1)                    ;; save place mode
+  (global-display-line-numbers-mode)     ;; Line numbers
+  (global-hl-line-mode)                  ;; Highlight current line
+  (transient-mark-mode 1)                ;; Enable transient mark mode
+  (xterm-mouse-mode t)                   ;; Mouse support for xterm compatible terminals
+
+  ;; Keybinds
+
+  (setq visual-line-fringe-indicators    ;; Nice symbol for visiual-line-mode
+        '(nil right-curly-arrow))
+  (global-set-key (kbd "C-c w")          ;; Keybind for visiual-line-mode!
+                  (lambda ()
+                    (interactive)
+                    (visual-line-mode 'toggle)))
+  (global-set-key (kbd "C-c b")          ;; Keybind for speedbar
+                  (lambda ()
+                    (interactive)
+                    (speedbar)))
 
 #+end_src
 
