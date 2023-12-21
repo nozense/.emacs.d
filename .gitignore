@@ -1,11 +1,8 @@
 *~
 \#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
 .\#*
 elpa/
 litter/
 eln-cache/
 emacs.el
 custom.el
-.last-package-update-day
