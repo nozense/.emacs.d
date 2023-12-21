@@ -10,7 +10,7 @@
    user-mail-address "nonsens@nozen.se")
 
   ;; Move the set-custom to a separate file
-  (setq custom-file  (expand-file-name "litter/custom.el" user-emacs-directory))
+  (setq custom-file  (expand-file-name "custom.el"(expand-file-name "litter/"  user-emacs-directory)))
   (unless (file-exists-p custom-file)
     (write-region "" nil custom-file))
   (load custom-file)
