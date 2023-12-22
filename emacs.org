@@ -4,19 +4,21 @@
 * User settings and early stuff
 
 #+begin_src emacs-lisp
-
+  
   (setq
-   user-full-name "NoZenSe"
-   user-mail-address "nonsens@nozen.se")
+     user-full-name "NoZenSe"
+     user-mail-address "nonsens@nozen.se")
   (set-language-environment "UTF-8")     ;; Set utf-8 language coding
+
+  ;; The default is 800 kilobytes.  Measured in bytes. <- Systemcrafters idea! (=
+  (setq gc-cons-threshold (* 50 1000 1000))
+
+
   ;; Move the set-custom to a separate file
   (setq custom-file  (expand-file-name "custom.el"(expand-file-name "litter/"  user-emacs-directory)))
   (unless (file-exists-p custom-file)
     (progn (make-directory (expand-file-name "litter/"  user-emacs-directory) t)(write-region "" nil custom-file)))
   (load custom-file)
-
-  ;; The default is 800 kilobytes.  Measured in bytes. <- Systemcrafters idea! (=
-  (setq gc-cons-threshold (* 50 1000 1000))
 
 #+end_src
 

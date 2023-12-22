@@ -4,5 +4,5 @@
 elpa/
 litter/
 eln-cache/
+auto-save-list/
 emacs.el
-custom.el
