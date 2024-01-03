@@ -70,6 +70,7 @@
 
   (setq inhibit-splash-screen t)         ;; Disable the splash screen
   (setq inhibit-startup-message t)       ;; Disable startupmessage
+  (setq-default cursor-type 'bar)        ;; Set cursor to bar
   (tool-bar-mode -1)                     ;; no need for tool-bars
   (menu-bar-mode -1)                     ;; no need for menus
   (scroll-bar-mode -1)                   ;; no scrollbar - plz!
@@ -364,8 +365,7 @@ Vertico, Marginalia, Consult, Embark, Orderless
 
   (use-package dracula-theme
     :config
-    (load-theme 'dracula t)
-    (setq-default cursor-type 'box))
+    (load-theme 'dracula t))
 
   (use-package avy
     :bind (("M-g e" . avy-goto-word-0)

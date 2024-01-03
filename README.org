@@ -1,5 +1,5 @@
 * .emacs.d
-This is just my emacs conf, included is my game highscore!
+This is just my emacs conf.
 
 ** elisp/
 Here is amongst other things my machine-specific settings, including the publish settings for my homepage and my org-captures.
